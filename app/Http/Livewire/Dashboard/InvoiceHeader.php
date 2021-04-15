@@ -33,8 +33,8 @@ class InvoiceHeader extends Component
     public function submit()
     {
         $this->validate();
-        $this->data['created_by'] = 1;
-        $this->data['update_by'] = 1;
+        $this->data['created_by'] = auth()->user()->id;
+        $this->data['update_by'] = auth()->user()->id;
         ModelsInvoiceHeader::create($this->data);
         session()->flash('success', 'Data berhasil ditambahkan');
         return redirect()->route('dashboard.invoice-header');
